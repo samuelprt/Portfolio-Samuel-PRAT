@@ -28,18 +28,17 @@
         body {
             background-color: var(--purple-deep);
             color: var(--white);
-            font-family: 'Arial MT Pro', Arial, sans-serif; /* Police de texte demandée */
+            font-family: 'Arial MT Pro', Arial, sans-serif;
             line-height: 1.6;
             overflow-x: hidden;
         }
 
         h1, h2, h3, .subtitle, .nav-link {
-            font-family: 'League Spartan', sans-serif; /* Police de sous-titres demandée */
+            font-family: 'League Spartan', sans-serif;
             text-transform: uppercase;
             font-weight: 900;
         }
 
-        /* --- Éléments de Décor Brutalistes --- */
         .noise {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
@@ -49,7 +48,6 @@
             background-image: url('data:image/svg+xml;utf8,<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"><filter id="n"><feTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" stitchTiles="stitch"/></filter><rect width="100%" height="100%" filter="url(%23n)"/></svg>');
         }
 
-        /* --- Header / Hero --- */
         header {
             height: 100vh;
             display: flex;
@@ -82,7 +80,6 @@
             display: inline-block;
         }
 
-        /* --- Marquee (Bande défilante style Acid) --- */
         .marquee {
             background-color: var(--blue);
             color: var(--black);
@@ -106,7 +103,6 @@
             to { transform: translateX(-100%); }
         }
 
-        /* --- Grille de Projets --- */
         .container {
             padding: 80px 5vw;
         }
@@ -125,10 +121,12 @@
             color: var(--orange);
         }
 
+        /* La grille est vide au départ et sera remplie par le JS */
         .projects-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
             gap: 40px;
+            min-height: 400px;
         }
 
         .project-card {
@@ -151,7 +149,6 @@
             position: relative;
         }
 
-        /* Effet de filtre thermique au survol */
         .project-img-wrapper img {
             width: 100%;
             height: 100%;
@@ -183,7 +180,6 @@
             display: block;
         }
 
-        /* --- Contact / Footer --- */
         .footer-section {
             background-color: var(--red);
             color: var(--white);
@@ -207,7 +203,6 @@
             color: var(--black);
         }
 
-        /* --- Responsive --- */
         @media (max-width: 768px) {
             .hero-title { font-size: 5rem; }
             .projects-grid { grid-template-columns: 1fr; }
@@ -228,57 +223,14 @@
         <span>WORK • 2024 • ACID VISUALS • BRANDING • DIGITAL ART • THERMAL EFFECT • LEAGUE SPARTAN • ARIAL PRO • </span>
     </div>
 
-    <section class="container" id="projects">
+    <section class="container" id="projects-section">
         <div class="section-header">
             <h2 class="section-title">PROJETS</h2>
-            <p style="color: var(--yellow)">SÉLECTION 01-04</p>
+            <p style="color: var(--yellow)">SÉLECTION ANNÉE 1</p>
         </div>
 
-        <div class="projects-grid">
-            <!-- Projet 1 -->
-            <div class="project-card">
-                <div class="project-img-wrapper">
-                    <img src="https://images.unsplash.com/photo-1550684848-fac1c5b4e853?auto=format&fit=crop&q=80&w=800" alt="Projet Acid">
-                </div>
-                <div class="project-info">
-                    <span class="project-tag">01 / DIRECTION ARTISTIQUE</span>
-                    <h3>THERMAL VISION</h3>
-                </div>
-            </div>
-
-            <!-- Projet 2 -->
-            <div class="project-card">
-                <div class="project-img-wrapper">
-                    <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&q=80&w=800" alt="Projet Digital">
-                </div>
-                <div class="project-info">
-                    <span class="project-tag">02 / BRANDING</span>
-                    <h3>YELLOW POP</h3>
-                </div>
-            </div>
-
-            <!-- Projet 3 -->
-            <div class="project-card">
-                <div class="project-img-wrapper">
-                    <img src="https://images.unsplash.com/photo-1633167606207-d840b5070fc2?auto=format&fit=crop&q=80&w=800" alt="Projet Graphique">
-                </div>
-                <div class="project-info">
-                    <span class="project-tag">03 / UI-UX DESIGN</span>
-                    <h3>ACID INTERFACE</h3>
-                </div>
-            </div>
-
-            <!-- Projet 4 -->
-            <div class="project-card">
-                <div class="project-img-wrapper">
-                    <img src="https://images.unsplash.com/photo-1620641788421-7a1c342ea42e?auto=format&fit=crop&q=80&w=800" alt="Projet Motion">
-                </div>
-                <div class="project-info">
-                    <span class="project-tag">04 / MOTION GRAPHICS</span>
-                    <h3>VIBRANT CORE</h3>
-                </div>
-            </div>
-        </div>
+        <!-- Le contenu sera injecté ici par anne1.js -->
+        <div class="projects-grid" id="grid-anne1"></div>
     </section>
 
     <section class="footer-section">
@@ -289,8 +241,16 @@
         </div>
     </section>
 
-    <script>
-        // Optionnel : Un petit script pour changer la couleur de fond au scroll
+    <!-- Script principal de type module -->
+    <script type="module">
+        import { chargerProjets } from './module/anne1.js';
+
+        // Chargement des projets au démarrage
+        window.addEventListener('DOMContentLoaded', () => {
+            chargerProjets('grid-anne1');
+        });
+
+        // Effet de scroll pour le fond
         window.addEventListener('scroll', () => {
             const scrollPercent = window.scrollY / (document.body.offsetHeight - window.innerHeight);
             const body = document.body;
