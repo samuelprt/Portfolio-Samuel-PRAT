@@ -4,8 +4,8 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Samuel PRAT — Portfolio</title>
-  <link href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@400;700;900&display=swap" rel="stylesheet"/>
   <style>
+    @import url('https://fonts.googleapis.com/css2?family=League+Spartan:wght@400;700;900&display=swap');
     /* ── RESET & VARIABLES ── */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -931,13 +931,13 @@
       </div>
       <div class="hero-card-divider"></div>
       <div class="hero-card-stat">
-        <div class="hero-card-stat-num">4</div>
-        <div class="hero-card-stat-label">Projets réalisés</div>
+        <div class="hero-card-stat-num">IUT</div>
+        <div class="hero-card-stat-label">Bordeaux Montaigne</div>
       </div>
       <div class="hero-card-divider"></div>
       <div class="hero-card-stat">
-        <div class="hero-card-stat-num">IUT</div>
-        <div class="hero-card-stat-label">Bordeaux Montaigne</div>
+        <div class="hero-card-stat-num">18</div>
+        <div class="hero-card-stat-label">ans · Né le 10/07/2007</div>
       </div>
     </div>
   </div>
@@ -1045,61 +1045,142 @@
       <h2 class="section-title">Expériences & CV<span></span></h2>
     </div>
 
-    <div class="timeline">
+    <!-- CV GRID -->
+    <div style="display:grid; grid-template-columns:1fr 1.6fr; gap:3rem; align-items:start;">
 
-      <div class="timeline-item">
-        <div class="timeline-dot"></div>
-        <div class="timeline-date">2024–2025 · En cours</div>
-        <div class="timeline-title">BUT Carrières Sociales — VTD</div>
-        <div class="timeline-org">IUT Bordeaux Montaigne</div>
-        <p class="timeline-desc">Formation en Villes et Territoires Durables au sein du département Carrières Sociales. Acquisition de compétences en aménagement, cartographie, développement durable et conduite de projets territoriaux.</p>
-        <div class="timeline-tags">
-          <span class="timeline-tag">Aménagement</span>
-          <span class="timeline-tag">Cartographie</span>
-          <span class="timeline-tag">Développement durable</span>
-          <span class="timeline-tag">Projet territorial</span>
+      <!-- COLONNE GAUCHE -->
+      <div>
+
+        <!-- Compétences -->
+        <div style="margin-bottom:2.5rem;">
+          <h3 style="font-family:'League Spartan',sans-serif; font-weight:900; font-size:0.75rem; text-transform:uppercase; letter-spacing:0.2em; color:var(--yellow); margin-bottom:1rem; border-bottom:3px solid var(--yellow); padding-bottom:0.4rem;">Compétences</h3>
+          <div style="display:flex; flex-wrap:wrap; gap:0.4rem;">
+            <span class="timeline-tag">Aisance relationnelle</span>
+            <span class="timeline-tag">Sens de l'écoute</span>
+            <span class="timeline-tag">Adaptabilité</span>
+            <span class="timeline-tag">Communication</span>
+            <span class="timeline-tag">Efficacité</span>
+            <span class="timeline-tag">Maîtrise de l'informatique</span>
+          </div>
         </div>
+
+        <!-- Langues -->
+        <div style="margin-bottom:2.5rem;">
+          <h3 style="font-family:'League Spartan',sans-serif; font-weight:900; font-size:0.75rem; text-transform:uppercase; letter-spacing:0.2em; color:var(--yellow); margin-bottom:1rem; border-bottom:3px solid var(--yellow); padding-bottom:0.4rem;">Langues</h3>
+          <div style="margin-bottom:0.8rem;">
+            <div style="font-family:'League Spartan',sans-serif; font-weight:700; font-size:0.8rem; text-transform:uppercase; color:var(--white); margin-bottom:0.3rem;">Anglais</div>
+            <div style="height:5px; background:rgba(255,255,255,0.15); border-radius:0; width:100%;"><div style="height:5px; background:var(--blue); width:60%;"></div></div>
+          </div>
+          <div>
+            <div style="font-family:'League Spartan',sans-serif; font-weight:700; font-size:0.8rem; text-transform:uppercase; color:var(--white); margin-bottom:0.3rem;">Espagnol</div>
+            <div style="height:5px; background:rgba(255,255,255,0.15); width:100%;"><div style="height:5px; background:var(--orange); width:30%;"></div></div>
+          </div>
+        </div>
+
+        <!-- Loisirs & Maîtrises -->
+        <div style="margin-bottom:2.5rem;">
+          <h3 style="font-family:'League Spartan',sans-serif; font-weight:900; font-size:0.75rem; text-transform:uppercase; letter-spacing:0.2em; color:var(--yellow); margin-bottom:1rem; border-bottom:3px solid var(--yellow); padding-bottom:0.4rem;">Loisirs & Maîtrises</h3>
+          <ul style="list-style:none; padding:0;">
+            <li style="font-size:0.85rem; color:rgba(255,255,255,0.8); padding:0.25rem 0; border-bottom:1px solid rgba(255,255,255,0.07);">BAC avec mention</li>
+            <li style="font-size:0.85rem; color:rgba(255,255,255,0.8); padding:0.25rem 0; border-bottom:1px solid rgba(255,255,255,0.07);">Diplôme PIX</li>
+            <li style="font-size:0.85rem; color:rgba(255,255,255,0.8); padding:0.25rem 0; border-bottom:1px solid rgba(255,255,255,0.07);">Maîtrise de Géoportail</li>
+            <li style="font-size:0.85rem; color:rgba(255,255,255,0.8); padding:0.25rem 0; border-bottom:1px solid rgba(255,255,255,0.07);">Maîtrise Word / Excel</li>
+            <li style="font-size:0.85rem; color:rgba(255,255,255,0.8); padding:0.25rem 0;">Permis B</li>
+          </ul>
+        </div>
+
       </div>
 
-      <div class="timeline-item">
-        <div class="timeline-dot"></div>
-        <div class="timeline-date">2024 · Stage</div>
-        <div class="timeline-title">Stage — Service Aménagement Urbain</div>
-        <div class="timeline-org">Bordeaux Métropole · Pôle Territoire Ouest</div>
-        <p class="timeline-desc">Stage au sein du service Aménagement Urbain de l'intercommunalité de Bordeaux Métropole, pôle Territoire Ouest. Découverte des métiers de l'aménagement territorial à l'échelle métropolitaine, participation aux activités du service.</p>
-        <div class="timeline-tags">
-          <span class="timeline-tag">Intercommunalité</span>
-          <span class="timeline-tag">Urbanisme</span>
-          <span class="timeline-tag">Métropole bordelaise</span>
+      <!-- COLONNE DROITE : timeline -->
+      <div>
+
+        <!-- Formation -->
+        <h3 style="font-family:'League Spartan',sans-serif; font-weight:900; font-size:0.75rem; text-transform:uppercase; letter-spacing:0.2em; color:var(--yellow); margin-bottom:1.2rem; border-bottom:3px solid var(--yellow); padding-bottom:0.4rem;">Formation</h3>
+        <div class="timeline" style="margin-bottom:2.5rem;">
+
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-date">2025 · En cours</div>
+            <div class="timeline-title">BUT Villes et Territoires Durables</div>
+            <div class="timeline-org">IUT Bordeaux Montaigne</div>
+            <ul style="margin-top:0.5rem; padding-left:1.1rem; list-style:disc;">
+              <li style="font-size:0.82rem; color:rgba(255,255,255,0.75); line-height:1.6; margin-bottom:0.3rem;">Adopter une posture et une communication adaptée aux contextes et aux acteurs</li>
+              <li style="font-size:0.82rem; color:rgba(255,255,255,0.75); line-height:1.6; margin-bottom:0.3rem;">Savoir privilégier la proximité avec les publics et les acteurs territoriaux</li>
+              <li style="font-size:0.82rem; color:rgba(255,255,255,0.75); line-height:1.6;">Maîtrise en cartographie, diagnostic territorial et repérage des conflits entre acteurs</li>
+            </ul>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-date">2024–2025</div>
+            <div class="timeline-title">Baccalauréat général</div>
+            <div class="timeline-org">Avec mention</div>
+          </div>
+
+        </div>
+
+        <!-- Expériences professionnelles -->
+        <h3 style="font-family:'League Spartan',sans-serif; font-weight:900; font-size:0.75rem; text-transform:uppercase; letter-spacing:0.2em; color:var(--yellow); margin-bottom:1.2rem; border-bottom:3px solid var(--yellow); padding-bottom:0.4rem;">Expériences professionnelles</h3>
+        <div class="timeline">
+
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-date">07/2025 · 08/2025</div>
+            <div class="timeline-title">Saisonnier en Grande surface</div>
+            <div class="timeline-org">Leclerc · Biscarrosse</div>
+            <ul style="margin-top:0.5rem; padding-left:1.1rem; list-style:disc;">
+              <li style="font-size:0.82rem; color:rgba(255,255,255,0.75); line-height:1.6; margin-bottom:0.3rem;">Mise en rayon</li>
+              <li style="font-size:0.82rem; color:rgba(255,255,255,0.75); line-height:1.6;">En relation avec les clients pour les aider ou les orienter</li>
+            </ul>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-date">06/2024 · 08/2024</div>
+            <div class="timeline-title">Vendeur en poissonnerie</div>
+            <div class="timeline-org">Poissonnerie De La Plage Biscarrosse · Biscarrosse</div>
+            <ul style="margin-top:0.5rem; padding-left:1.1rem; list-style:disc;">
+              <li style="font-size:0.82rem; color:rgba(255,255,255,0.75); line-height:1.6; margin-bottom:0.3rem;">Renseignements et prise des commandes au comptoir</li>
+              <li style="font-size:0.82rem; color:rgba(255,255,255,0.75); line-height:1.6;">Gestion de la caisse</li>
+            </ul>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-date">06/2023 · 12/2023</div>
+            <div class="timeline-title">Bénévole</div>
+            <div class="timeline-org">Banque Alimentaire et Restos du Cœur · Biscarrosse & Parentis</div>
+            <ul style="margin-top:0.5rem; padding-left:1.1rem; list-style:disc;">
+              <li style="font-size:0.82rem; color:rgba(255,255,255,0.75); line-height:1.6; margin-bottom:0.3rem;">Contribution à des tâches logistiques de base pour assurer un flux de travail fluide</li>
+              <li style="font-size:0.82rem; color:rgba(255,255,255,0.75); line-height:1.6; margin-bottom:0.3rem;">Réalisation de diverses tâches manuelles selon les besoins opérationnels (ménage, vente, remise en rayon)</li>
+              <li style="font-size:0.82rem; color:rgba(255,255,255,0.75); line-height:1.6;">Travail en équipe de 8 personnes pour atteindre les objectifs fixés</li>
+            </ul>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-date">07/2023 · 08/2023</div>
+            <div class="timeline-title">Agent d'entretien</div>
+            <div class="timeline-org">Conciergerie · Biscarrosse</div>
+            <ul style="margin-top:0.5rem; padding-left:1.1rem; list-style:disc;">
+              <li style="font-size:0.82rem; color:rgba(255,255,255,0.75); line-height:1.6;">Remise en état des logements entre chaque occupant, nettoyage des pièces et lavage des vitres</li>
+            </ul>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-date">07/2022</div>
+            <div class="timeline-title">Castreur de maïs</div>
+            <div class="timeline-org">Agriculteur · Commensacq</div>
+            <ul style="margin-top:0.5rem; padding-left:1.1rem; list-style:disc;">
+              <li style="font-size:0.82rem; color:rgba(255,255,255,0.75); line-height:1.6;">Réalisation d'opérations manuelles destinées à entretenir les lignes de géniteurs mâles et femelles des parcelles de maïs</li>
+            </ul>
+          </div>
+
         </div>
       </div>
-
-      <div class="timeline-item">
-        <div class="timeline-dot"></div>
-        <div class="timeline-date">Avril 2023 · Engagement</div>
-        <div class="timeline-title">Voyage humanitaire au Liban</div>
-        <div class="timeline-org">Association Les Cuisines de Marie</div>
-        <p class="timeline-desc">Participation à une mission humanitaire au Liban durant l'année de seconde. Aide à la préparation de repas pour des personnes en situation de vulnérabilité. Engagement citoyen et découverte de la solidarité internationale.</p>
-        <div class="timeline-tags">
-          <span class="timeline-tag">Solidarité</span>
-          <span class="timeline-tag">Humanitaire</span>
-          <span class="timeline-tag">International</span>
-        </div>
-      </div>
-
-      <div class="timeline-item">
-        <div class="timeline-dot"></div>
-        <div class="timeline-date">2021–2024</div>
-        <div class="timeline-title">Baccalauréat Général</div>
-        <div class="timeline-org">Lycée</div>
-        <p class="timeline-desc">Obtention du baccalauréat général avec orientation vers les sciences humaines et sociales, constituant le socle de la curiosité pour les enjeux de territoire et d'environnement.</p>
-        <div class="timeline-tags">
-          <span class="timeline-tag">Sciences humaines</span>
-          <span class="timeline-tag">Géographie</span>
-        </div>
-      </div>
-
     </div>
+
   </div>
 </section>
 
@@ -1111,64 +1192,30 @@
       <h2 class="section-title">Contact<span></span></h2>
     </div>
 
-    <div class="contact-grid">
-      <div class="contact-info">
-        <div class="contact-info-item">
-          <div class="contact-info-icon">✉</div>
-          <div>
-            <div class="contact-info-label">Email</div>
-            <div class="contact-info-value">
-              <a href="mailto:pratsamuel@yahoo.com">pratsamuel@yahoo.com</a>
-            </div>
-          </div>
-        </div>
-        <div class="contact-info-item">
-          <div class="contact-info-icon">📞</div>
-          <div>
-            <div class="contact-info-label">Téléphone</div>
-            <div class="contact-info-value">
-              <a href="tel:+33699441437">06 99 44 14 37</a>
-            </div>
-          </div>
-        </div>
-        <div class="contact-info-item">
-          <div class="contact-info-icon">📍</div>
-          <div>
-            <div class="contact-info-label">Localisation</div>
-            <div class="contact-info-value">Bordeaux, France</div>
-          </div>
+    <div style="display:flex; flex-direction:column; gap:1.5rem; max-width:480px;">
+      <div class="contact-info-item">
+        <div class="contact-info-icon">✉</div>
+        <div>
+          <div class="contact-info-label">Email</div>
+          <div class="contact-info-value"><a href="mailto:pratsamuel@yahoo.com">pratsamuel@yahoo.com</a></div>
         </div>
       </div>
-
-      <div>
-        <form class="contact-form" id="contactForm" novalidate>
-          <div class="form-row">
-            <div class="form-group">
-              <label for="fname">Prénom *</label>
-              <input type="text" id="fname" name="fname" placeholder="Votre prénom" required />
-            </div>
-            <div class="form-group">
-              <label for="lname">Nom *</label>
-              <input type="text" id="lname" name="lname" placeholder="Votre nom" required />
-            </div>
-          </div>
-          <div class="form-group">
-            <label for="email">Email *</label>
-            <input type="email" id="email" name="email" placeholder="votre@email.com" required />
-          </div>
-          <div class="form-group">
-            <label for="objet">Objet</label>
-            <input type="text" id="objet" name="objet" placeholder="Sujet de votre message" />
-          </div>
-          <div class="form-group">
-            <label for="message">Message *</label>
-            <textarea id="message" name="message" rows="5" placeholder="Votre message..." required></textarea>
-          </div>
-          <div class="form-msg" id="formMsg"></div>
-          <button type="submit" class="btn btn-primary" style="width: fit-content;">Envoyer le message</button>
-        </form>
+      <div class="contact-info-item">
+        <div class="contact-info-icon">📞</div>
+        <div>
+          <div class="contact-info-label">Téléphone</div>
+          <div class="contact-info-value"><a href="tel:+33699441437">06 99 44 14 37</a></div>
+        </div>
+      </div>
+      <div class="contact-info-item">
+        <div class="contact-info-icon">📍</div>
+        <div>
+          <div class="contact-info-label">Adresse</div>
+          <div class="contact-info-value">792 av de la République</div>
+        </div>
       </div>
     </div>
+
   </div>
 </section>
 
@@ -1222,38 +1269,6 @@
 
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') closeVideo();
-  });
-
-  /* ── FORM ── */
-  const contactForm = document.getElementById('contactForm');
-  const formMsg = document.getElementById('formMsg');
-
-  contactForm.addEventListener('submit', (e) => {
-    e.preventDefault();
-    const fname = contactForm.fname.value.trim();
-    const lname = contactForm.lname.value.trim();
-    const email = contactForm.email.value.trim();
-    const message = contactForm.message.value.trim();
-    const emailRe = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
-    formMsg.className = 'form-msg';
-    formMsg.textContent = '';
-
-    if (!fname || !lname || !email || !message) {
-      formMsg.classList.add('error');
-      formMsg.textContent = '⚠ Merci de remplir tous les champs obligatoires (*).';
-      return;
-    }
-
-    if (!emailRe.test(email)) {
-      formMsg.classList.add('error');
-      formMsg.textContent = '⚠ Adresse email invalide.';
-      return;
-    }
-
-    formMsg.classList.add('success');
-    formMsg.textContent = `✓ Merci ${fname} ! Votre message a bien été envoyé.`;
-    contactForm.reset();
   });
 
   /* ── ACTIVE NAV ── */
