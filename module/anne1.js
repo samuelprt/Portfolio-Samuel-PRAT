@@ -31,6 +31,7 @@
             font-family: 'Arial MT Pro', Arial, sans-serif;
             line-height: 1.6;
             overflow-x: hidden;
+            transition: background-color 0.5s ease;
         }
 
         h1, h2, h3, .subtitle, .nav-link {
@@ -48,7 +49,7 @@
             background-image: url('data:image/svg+xml;utf8,<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"><filter id="n"><feTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" stitchTiles="stitch"/></filter><rect width="100%" height="100%" filter="url(%23n)"/></svg>');
         }
 
-        /* --- Header (Mis à jour : moins agressif avec le violet clair du moodboard) --- */
+        /* --- Header --- */
         header {
             height: 100vh;
             display: flex;
@@ -139,7 +140,6 @@
             min-height: 400px;
         }
 
-        /* Styles des cartes gérés dynamiquement via anne1.js mais définis ici */
         .project-card {
             background-color: var(--black);
             border: 4px solid var(--black);
@@ -174,8 +174,10 @@
             filter: grayscale(0) saturate(2) contrast(1.5) hue-rotate(45deg);
         }
 
-        .project-card:nth-child(2n) .project-img-wrapper { background-color: var(--blue); }
-        .project-card:nth-child(3n) .project-img-wrapper { background-color: var(--red); }
+        /* Couleurs dynamiques basées sur l'index de la carte */
+        .project-card.alt-1 .project-img-wrapper { background-color: var(--blue); }
+        .project-card.alt-2 .project-img-wrapper { background-color: var(--red); }
+        .project-card.alt-0 .project-img-wrapper { background-color: var(--orange); }
 
         .project-info {
             padding: 20px;
@@ -245,8 +247,9 @@
             <p style="color: var(--yellow)">SÉLECTION ANNÉE 1</p>
         </div>
 
-        <!-- Le contenu est injecté dynamiquement par module/anne1.js -->
-        <div class="projects-grid" id="grid-anne1"></div>
+        <div class="projects-grid" id="grid-anne1">
+            <!-- Les projets seront injectés ici -->
+        </div>
     </section>
 
     <footer class="footer-section">
@@ -257,25 +260,78 @@
         </div>
     </footer>
 
-    <!-- Script principal de type module -->
-    <script type="module">
-        import { chargerProjets } from './module/anne1.js';
+    <script>
+        /**
+         * Données des projets intégrées pour éviter les erreurs de résolution de module
+         */
+        const projetsAnne1 = [
+            {
+                id: "01",
+                categorie: "DIRECTION ARTISTIQUE",
+                titre: "ROMAN PHOTO",
+                image: "https://images.unsplash.com/photo-1550684848-fac1c5b4e853?auto=format&fit=crop&q=80&w=800",
+                lien: "projets/roman-photo.pdf" 
+            },
+            {
+                id: "02",
+                categorie: "BRANDING",
+                titre: "YELLOW POP",
+                image: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&q=80&w=800",
+                lien: "#"
+            },
+            {
+                id: "03",
+                categorie: "UI-UX DESIGN",
+                titre: "ACID INTERFACE",
+                image: "https://images.unsplash.com/photo-1633167606207-d840b5070fc2?auto=format&fit=crop&q=80&w=800",
+                lien: "#"
+            },
+            {
+                id: "04",
+                categorie: "MOTION GRAPHICS",
+                titre: "VIBRANT CORE",
+                image: "https://images.unsplash.com/photo-1620641788421-7a1c342ea42e?auto=format&fit=crop&q=80&w=800",
+                lien: "#"
+            }
+        ];
 
-        // Chargement des projets au démarrage
+        /**
+         * Fonction pour charger les projets dans la grille
+         */
+        function chargerProjets(containerId) {
+            const container = document.getElementById(containerId);
+            if (!container) return;
+
+            const htmlProjets = projetsAnne1.map((projet, index) => `
+                <div class="project-card alt-${index % 3}" onclick="window.open('${projet.lien}', '_blank')">
+                    <div class="project-img-wrapper">
+                        <img src="${projet.image}" alt="${projet.titre}">
+                    </div>
+                    <div class="project-info">
+                        <span class="project-tag">${projet.id} / ${projet.categorie}</span>
+                        <h3>${projet.titre}</h3>
+                    </div>
+                </div>
+            `).join('');
+
+            container.innerHTML = htmlProjets;
+        }
+
+        // Initialisation au chargement
         window.addEventListener('DOMContentLoaded', () => {
             chargerProjets('grid-anne1');
-        });
 
-        // Effet de scroll pour changer l'ambiance au fond
-        window.addEventListener('scroll', () => {
-            const scrollPercent = window.scrollY / (document.body.offsetHeight - window.innerHeight);
-            const body = document.body;
-            
-            if (scrollPercent > 0.8) {
-                body.style.backgroundColor = 'var(--black)';
-            } else {
-                body.style.backgroundColor = 'var(--purple-deep)';
-            }
+            // Effet de scroll
+            window.addEventListener('scroll', () => {
+                const scrollPercent = window.scrollY / (document.body.offsetHeight - window.innerHeight);
+                const body = document.body;
+                
+                if (scrollPercent > 0.8) {
+                    body.style.backgroundColor = 'var(--black)';
+                } else {
+                    body.style.backgroundColor = 'var(--purple-deep)';
+                }
+            });
         });
     </script>
 </body>
