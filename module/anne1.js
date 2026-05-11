@@ -1,338 +1,1284 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolio | Samuel PRAT</title>
-    <!-- Importation de League Spartan pour les titres -->
-    <link href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@700;900&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --yellow: #ffdf00;
-            --orange: #ff4f00;
-            --red: #ff0006;
-            --blue: #189ffe;
-            --purple-light: #725580;
-            --purple-mid: #330c85;
-            --purple-deep: #3800ae;
-            --black: #000000;
-            --white: #ffffff;
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Samuel PRAT — Portfolio</title>
+  <link href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@400;700;900&display=swap" rel="stylesheet"/>
+  <style>
+    /* ── RESET & VARIABLES ── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+    :root {
+      --yellow:  #ffdf00;
+      --orange:  #ff4f00;
+      --red:     #ff0006;
+      --blue:    #189ffe;
+      --mauve:   #725580;
+      --indigo:  #330c85;
+      --violet:  #3800ae;
+      --white:   #ffffff;
+      --black:   #0a0a0a;
+      --font-title: 'League Spartan', sans-serif;
+      --font-body: Arial, sans-serif;
+    }
 
-        body {
-            background-color: var(--purple-deep);
-            color: var(--white);
-            font-family: 'Arial MT Pro', Arial, sans-serif;
-            line-height: 1.6;
-            overflow-x: hidden;
-            transition: background-color 0.5s ease;
-        }
+    html { scroll-behavior: smooth; }
 
-        h1, h2, h3, .subtitle, .nav-link {
-            font-family: 'League Spartan', sans-serif;
-            text-transform: uppercase;
-            font-weight: 900;
-        }
+    body {
+      font-family: var(--font-body);
+      background: var(--violet);
+      color: var(--white);
+      overflow-x: hidden;
+      cursor: crosshair;
+    }
 
-        .noise {
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            pointer-events: none;
-            opacity: 0.05;
-            z-index: 9999;
-            background-image: url('data:image/svg+xml;utf8,<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"><filter id="n"><feTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" stitchTiles="stitch"/></filter><rect width="100%" height="100%" filter="url(%23n)"/></svg>');
-        }
+    /* ── SCROLLBAR ── */
+    ::-webkit-scrollbar { width: 8px; }
+    ::-webkit-scrollbar-track { background: var(--indigo); }
+    ::-webkit-scrollbar-thumb { background: var(--yellow); }
 
-        /* --- Header --- */
-        header {
-            height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            background-color: var(--purple-light);
-            color: var(--white);
-            border-bottom: 15px solid var(--black);
-            padding: 20px;
-            position: relative;
-            text-align: center;
-        }
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      background: var(--black);
+      border-bottom: 4px solid var(--yellow);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 2rem;
+      height: 60px;
+    }
 
-        .hero-title {
-            font-size: clamp(4rem, 15vw, 10rem);
-            line-height: 0.85;
-            letter-spacing: -5px;
-            transform: skew(-2deg);
-            margin-bottom: 30px;
-            color: var(--yellow);
-            -webkit-text-stroke: 2px var(--black);
-            text-shadow: 8px 8px 0px var(--black);
-        }
+    .nav-logo {
+      font-family: var(--font-title);
+      font-weight: 900;
+      font-size: 1.3rem;
+      color: var(--yellow);
+      letter-spacing: -0.03em;
+      text-transform: uppercase;
+    }
 
-        .hero-subtitle {
-            background-color: var(--black);
-            color: var(--white);
-            padding: 12px 30px;
-            font-size: clamp(1rem, 3vw, 1.8rem);
-            transform: rotate(-1deg);
-            display: inline-block;
-            border: 2px solid var(--yellow);
-        }
+    .nav-links {
+      display: flex;
+      gap: 0.25rem;
+      list-style: none;
+    }
 
-        .hero-name {
-            color: var(--yellow);
-            font-weight: bold;
-        }
+    .nav-links a {
+      display: block;
+      font-family: var(--font-title);
+      font-weight: 700;
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--white);
+      text-decoration: none;
+      padding: 0.4rem 0.8rem;
+      border: 2px solid transparent;
+      transition: background 0.15s, color 0.15s, border-color 0.15s;
+    }
 
-        /* --- Marquee --- */
-        .marquee {
-            background-color: var(--blue);
-            color: var(--black);
-            padding: 15px 0;
-            font-weight: bold;
-            border-bottom: 8px solid var(--black);
-            white-space: nowrap;
-            overflow: hidden;
-            display: flex;
-        }
+    .nav-links a:hover {
+      background: var(--yellow);
+      color: var(--black);
+      border-color: var(--yellow);
+    }
 
-        .marquee span {
-            display: inline-block;
-            padding-left: 50px;
-            font-size: 2rem;
-            animation: scroll 25s linear infinite;
-        }
+    .burger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 4px;
+    }
+    .burger span {
+      display: block;
+      width: 24px;
+      height: 3px;
+      background: var(--yellow);
+    }
 
-        @keyframes scroll {
-            from { transform: translateX(0); }
-            to { transform: translateX(-100%); }
-        }
+    /* ── HERO ── */
+    #hero {
+      min-height: 100vh;
+      padding-top: 60px;
+      background: var(--indigo);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      position: relative;
+      overflow: hidden;
+    }
 
-        /* --- Grille de Projets --- */
-        .container {
-            padding: 80px 5vw;
-        }
+    .hero-bg-shapes {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+    }
 
-        .section-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-end;
-            margin-bottom: 60px;
-            border-bottom: 4px solid var(--yellow);
-            padding-bottom: 20px;
-        }
+    .hero-bg-shapes::before {
+      content: '';
+      position: absolute;
+      width: 500px; height: 500px;
+      border-radius: 50%;
+      background: var(--yellow);
+      opacity: 0.08;
+      top: -100px; right: -100px;
+    }
 
-        .section-title {
-            font-size: clamp(3rem, 8vw, 6rem);
-            color: var(--yellow);
-        }
+    .hero-bg-shapes::after {
+      content: '';
+      position: absolute;
+      width: 300px; height: 300px;
+      background: var(--red);
+      opacity: 0.12;
+      bottom: 50px; left: 10%;
+      clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+    }
 
-        .projects-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 40px;
-            min-height: 400px;
-        }
+    .hero-left {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 4rem 3rem 4rem 4rem;
+      position: relative;
+      z-index: 1;
+    }
 
-        .project-card {
-            background-color: var(--black);
-            border: 4px solid var(--black);
-            position: relative;
-            transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            cursor: pointer;
-            overflow: hidden;
-        }
+    .hero-tag {
+      display: inline-block;
+      background: var(--yellow);
+      color: var(--black);
+      font-family: var(--font-title);
+      font-weight: 900;
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      padding: 0.35rem 0.9rem;
+      margin-bottom: 1.5rem;
+      width: fit-content;
+    }
 
-        .project-card:hover {
-            transform: translateY(-10px) rotate(1deg);
-            z-index: 10;
-        }
+    .hero-name {
+      font-family: var(--font-title);
+      font-weight: 900;
+      font-size: clamp(2.8rem, 6vw, 5.5rem);
+      line-height: 0.92;
+      text-transform: uppercase;
+      color: var(--white);
+      letter-spacing: -0.04em;
+      margin-bottom: 0.5rem;
+    }
 
-        .project-img-wrapper {
-            aspect-ratio: 4/5;
-            overflow: hidden;
-            background-color: var(--purple-light);
-            position: relative;
-        }
+    .hero-name span {
+      color: var(--yellow);
+      display: block;
+    }
 
-        .project-img-wrapper img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            filter: grayscale(1) contrast(1.2);
-            mix-blend-mode: screen;
-            transition: filter 0.5s ease;
-        }
+    .hero-subtitle {
+      font-family: var(--font-title);
+      font-weight: 700;
+      font-size: clamp(0.9rem, 2vw, 1.2rem);
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: var(--blue);
+      margin-bottom: 2rem;
+      border-left: 4px solid var(--orange);
+      padding-left: 1rem;
+    }
 
-        .project-card:hover img {
-            filter: grayscale(0) saturate(2) contrast(1.5) hue-rotate(45deg);
-        }
+    .hero-desc {
+      font-size: 0.95rem;
+      line-height: 1.7;
+      color: rgba(255,255,255,0.8);
+      max-width: 460px;
+      margin-bottom: 2.5rem;
+    }
 
-        /* Couleurs dynamiques basées sur l'index de la carte */
-        .project-card.alt-1 .project-img-wrapper { background-color: var(--blue); }
-        .project-card.alt-2 .project-img-wrapper { background-color: var(--red); }
-        .project-card.alt-0 .project-img-wrapper { background-color: var(--orange); }
+    .hero-cta {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
 
-        .project-info {
-            padding: 20px;
-            background-color: var(--white);
-            color: var(--black);
-            border-top: 4px solid var(--black);
-        }
+    .btn {
+      font-family: var(--font-title);
+      font-weight: 900;
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      padding: 0.75rem 1.8rem;
+      border: 3px solid;
+      text-decoration: none;
+      cursor: pointer;
+      transition: background 0.15s, color 0.15s, transform 0.1s;
+    }
 
-        .project-tag {
-            font-size: 0.8rem;
-            font-weight: bold;
-            color: var(--purple-deep);
-            margin-bottom: 5px;
-            display: block;
-        }
+    .btn:active { transform: scale(0.97); }
 
-        /* --- Footer --- */
-        .footer-section {
-            background-color: var(--red);
-            color: var(--white);
-            padding: 100px 5vw;
-            border-top: 15px solid var(--black);
-            text-align: center;
-        }
+    .btn-primary {
+      background: var(--yellow);
+      color: var(--black);
+      border-color: var(--yellow);
+    }
+    .btn-primary:hover { background: var(--orange); border-color: var(--orange); color: var(--white); }
 
-        .contact-btn {
-            font-family: 'League Spartan', sans-serif;
-            font-size: clamp(2rem, 10vw, 5rem);
-            color: var(--yellow);
-            text-decoration: none;
-            display: block;
-            margin-top: 30px;
-            transition: all 0.3s ease;
-        }
+    .btn-outline {
+      background: transparent;
+      color: var(--white);
+      border-color: var(--white);
+    }
+    .btn-outline:hover { background: var(--white); color: var(--black); }
 
-        .contact-btn:hover {
-            letter-spacing: 10px;
-            color: var(--black);
-            transform: scale(1.05);
-        }
+    .hero-right {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 4rem 3rem;
+    }
 
-        @media (max-width: 768px) {
-            .hero-title { font-size: 4rem; }
-            .projects-grid { grid-template-columns: 1fr; }
-        }
-    </style>
+    .hero-card {
+      background: var(--yellow);
+      padding: 2.5rem;
+      width: 100%;
+      max-width: 380px;
+      position: relative;
+    }
+
+    .hero-card::before {
+      content: '';
+      position: absolute;
+      inset: 8px;
+      border: 3px solid var(--black);
+      pointer-events: none;
+    }
+
+    .hero-card-label {
+      font-family: var(--font-title);
+      font-weight: 900;
+      font-size: 0.65rem;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      color: var(--black);
+      margin-bottom: 1.5rem;
+      opacity: 0.6;
+    }
+
+    .hero-card-stat {
+      margin-bottom: 1.2rem;
+    }
+
+    .hero-card-stat-num {
+      font-family: var(--font-title);
+      font-weight: 900;
+      font-size: 2.5rem;
+      color: var(--black);
+      line-height: 1;
+    }
+
+    .hero-card-stat-label {
+      font-family: var(--font-title);
+      font-weight: 700;
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--indigo);
+    }
+
+    .hero-card-divider {
+      height: 3px;
+      background: var(--black);
+      margin: 1rem 0;
+      opacity: 0.15;
+    }
+
+    /* ── SECTIONS COMMON ── */
+    section { padding: 5rem 2rem; }
+
+    .section-header {
+      display: flex;
+      align-items: baseline;
+      gap: 1rem;
+      margin-bottom: 3rem;
+    }
+
+    .section-number {
+      font-family: var(--font-title);
+      font-weight: 900;
+      font-size: 4rem;
+      line-height: 1;
+      opacity: 0.2;
+      color: var(--yellow);
+      user-select: none;
+    }
+
+    .section-title {
+      font-family: var(--font-title);
+      font-weight: 900;
+      font-size: clamp(1.8rem, 4vw, 3rem);
+      text-transform: uppercase;
+      letter-spacing: -0.03em;
+      line-height: 1;
+    }
+
+    .section-title span {
+      display: block;
+      width: 60px;
+      height: 6px;
+      background: var(--yellow);
+      margin-top: 0.6rem;
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    /* ── À PROPOS ── */
+    #apropos {
+      background: var(--black);
+    }
+
+    .apropos-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.5fr;
+      gap: 4rem;
+      align-items: start;
+    }
+
+    .apropos-sidebar {}
+
+    .apropos-identity-block {
+      background: var(--violet);
+      padding: 2rem;
+      margin-bottom: 1.5rem;
+      position: relative;
+    }
+
+    .apropos-identity-block::after {
+      content: '';
+      position: absolute;
+      bottom: -6px; right: -6px;
+      inset: auto;
+      width: calc(100% - 0px);
+      height: calc(100% - 0px);
+      border: 3px solid var(--yellow);
+      pointer-events: none;
+      top: 6px; left: 6px;
+    }
+
+    .apropos-identity-name {
+      font-family: var(--font-title);
+      font-weight: 900;
+      font-size: 1.4rem;
+      text-transform: uppercase;
+      letter-spacing: -0.02em;
+      color: var(--yellow);
+      margin-bottom: 0.3rem;
+    }
+
+    .apropos-identity-role {
+      font-family: var(--font-title);
+      font-weight: 700;
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: var(--blue);
+    }
+
+    .skills-block {
+      margin-top: 1rem;
+    }
+
+    .skill-tag {
+      display: inline-block;
+      font-family: var(--font-title);
+      font-weight: 700;
+      font-size: 0.65rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      padding: 0.3rem 0.7rem;
+      margin: 0.2rem;
+      border: 2px solid;
+    }
+
+    .skill-tag:nth-child(1) { border-color: var(--yellow); color: var(--yellow); }
+    .skill-tag:nth-child(2) { border-color: var(--orange); color: var(--orange); }
+    .skill-tag:nth-child(3) { border-color: var(--blue); color: var(--blue); }
+    .skill-tag:nth-child(4) { border-color: var(--red); color: var(--red); }
+    .skill-tag:nth-child(5) { border-color: var(--mauve); color: var(--mauve); }
+    .skill-tag:nth-child(6) { border-color: var(--yellow); color: var(--yellow); }
+
+    .apropos-content p {
+      font-size: 0.95rem;
+      line-height: 1.8;
+      color: rgba(255,255,255,0.85);
+      margin-bottom: 1.2rem;
+    }
+
+    /* ── PROJETS ── */
+    #projets {
+      background: var(--indigo);
+    }
+
+    .projets-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .projet-card {
+      background: var(--black);
+      border: 3px solid transparent;
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+      transition: border-color 0.2s, transform 0.15s;
+      text-decoration: none;
+      display: block;
+      color: inherit;
+    }
+
+    .projet-card:hover {
+      border-color: var(--yellow);
+      transform: translate(-4px, -4px);
+      box-shadow: 6px 6px 0 var(--yellow);
+    }
+
+    .projet-card-accent {
+      height: 6px;
+    }
+
+    .projet-card:nth-child(1) .projet-card-accent { background: var(--yellow); }
+    .projet-card:nth-child(2) .projet-card-accent { background: var(--orange); }
+    .projet-card:nth-child(3) .projet-card-accent { background: var(--blue); }
+    .projet-card:nth-child(4) .projet-card-accent { background: var(--red); }
+
+    .projet-card-body {
+      padding: 1.5rem;
+    }
+
+    .projet-card-year {
+      font-family: var(--font-title);
+      font-weight: 900;
+      font-size: 0.6rem;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      opacity: 0.5;
+      margin-bottom: 0.75rem;
+    }
+
+    .projet-card-title {
+      font-family: var(--font-title);
+      font-weight: 900;
+      font-size: 1.3rem;
+      text-transform: uppercase;
+      letter-spacing: -0.02em;
+      line-height: 1.1;
+      margin-bottom: 0.75rem;
+      color: var(--white);
+    }
+
+    .projet-card:nth-child(1) .projet-card-title { color: var(--yellow); }
+    .projet-card:nth-child(2) .projet-card-title { color: var(--orange); }
+    .projet-card:nth-child(3) .projet-card-title { color: var(--blue); }
+    .projet-card:nth-child(4) .projet-card-title { color: var(--red); }
+
+    .projet-card-desc {
+      font-size: 0.85rem;
+      line-height: 1.65;
+      color: rgba(255,255,255,0.7);
+      margin-bottom: 1.2rem;
+    }
+
+    .projet-card-link {
+      font-family: var(--font-title);
+      font-weight: 700;
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--yellow);
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .projet-card:nth-child(2) .projet-card-link { color: var(--orange); }
+    .projet-card:nth-child(3) .projet-card-link { color: var(--blue); }
+    .projet-card:nth-child(4) .projet-card-link { color: var(--red); }
+
+    .projet-card-link::after {
+      content: '→';
+      transition: transform 0.15s;
+    }
+
+    .projet-card:hover .projet-card-link::after {
+      transform: translateX(4px);
+    }
+
+    .no-link-note {
+      font-family: var(--font-title);
+      font-weight: 700;
+      font-size: 0.65rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: rgba(255,255,255,0.35);
+      margin-top: 0.5rem;
+    }
+
+    /* ── EXPÉRIENCES ── */
+    #experiences {
+      background: var(--violet);
+    }
+
+    .timeline {
+      position: relative;
+      padding-left: 2.5rem;
+    }
+
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 4px;
+      background: repeating-linear-gradient(
+        to bottom,
+        var(--yellow) 0, var(--yellow) 12px,
+        transparent 12px, transparent 20px
+      );
+    }
+
+    .timeline-item {
+      position: relative;
+      margin-bottom: 3rem;
+    }
+
+    .timeline-dot {
+      position: absolute;
+      left: -3.05rem;
+      top: 0.2rem;
+      width: 20px;
+      height: 20px;
+      background: var(--yellow);
+      border: 3px solid var(--black);
+    }
+
+    .timeline-date {
+      font-family: var(--font-title);
+      font-weight: 900;
+      font-size: 0.65rem;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      color: var(--yellow);
+      margin-bottom: 0.4rem;
+    }
+
+    .timeline-title {
+      font-family: var(--font-title);
+      font-weight: 900;
+      font-size: 1.2rem;
+      text-transform: uppercase;
+      letter-spacing: -0.01em;
+      margin-bottom: 0.3rem;
+    }
+
+    .timeline-org {
+      font-family: var(--font-title);
+      font-weight: 700;
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--blue);
+      margin-bottom: 0.75rem;
+    }
+
+    .timeline-desc {
+      font-size: 0.9rem;
+      line-height: 1.7;
+      color: rgba(255,255,255,0.8);
+      max-width: 680px;
+    }
+
+    .timeline-tags {
+      margin-top: 0.75rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+    }
+
+    .timeline-tag {
+      font-family: var(--font-title);
+      font-weight: 700;
+      font-size: 0.6rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      padding: 0.25rem 0.6rem;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.2);
+      color: rgba(255,255,255,0.7);
+    }
+
+    /* ── CONTACT ── */
+    #contact {
+      background: var(--black);
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.5fr;
+      gap: 4rem;
+      align-items: start;
+    }
+
+    .contact-info {}
+
+    .contact-info-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .contact-info-icon {
+      width: 44px;
+      height: 44px;
+      background: var(--yellow);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      font-size: 1.1rem;
+    }
+
+    .contact-info-label {
+      font-family: var(--font-title);
+      font-weight: 700;
+      font-size: 0.65rem;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: rgba(255,255,255,0.5);
+      margin-bottom: 0.25rem;
+    }
+
+    .contact-info-value {
+      font-family: var(--font-title);
+      font-weight: 900;
+      font-size: 1rem;
+      color: var(--white);
+      word-break: break-all;
+    }
+
+    .contact-info-value a {
+      color: var(--yellow);
+      text-decoration: none;
+    }
+    .contact-info-value a:hover { text-decoration: underline; }
+
+    /* FORM */
+    .contact-form {
+      display: flex;
+      flex-direction: column;
+      gap: 1.2rem;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+    }
+
+    .form-group label {
+      font-family: var(--font-title);
+      font-weight: 700;
+      font-size: 0.65rem;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: rgba(255,255,255,0.6);
+    }
+
+    .form-group input,
+    .form-group textarea {
+      background: rgba(255,255,255,0.06);
+      border: 2px solid rgba(255,255,255,0.15);
+      color: var(--white);
+      font-family: var(--font-body);
+      font-size: 0.9rem;
+      padding: 0.75rem 1rem;
+      outline: none;
+      transition: border-color 0.15s;
+      resize: vertical;
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus {
+      border-color: var(--yellow);
+    }
+
+    .form-group input::placeholder,
+    .form-group textarea::placeholder {
+      color: rgba(255,255,255,0.3);
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+
+    .form-msg {
+      font-family: var(--font-title);
+      font-weight: 700;
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      padding: 0.75rem 1rem;
+      display: none;
+    }
+
+    .form-msg.success {
+      display: block;
+      background: rgba(24, 159, 254, 0.15);
+      border: 2px solid var(--blue);
+      color: var(--blue);
+    }
+
+    .form-msg.error {
+      display: block;
+      background: rgba(255, 0, 6, 0.15);
+      border: 2px solid var(--red);
+      color: var(--red);
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--indigo);
+      border-top: 4px solid var(--yellow);
+      padding: 2rem;
+      text-align: center;
+    }
+
+    .footer-name {
+      font-family: var(--font-title);
+      font-weight: 900;
+      font-size: 1.1rem;
+      text-transform: uppercase;
+      letter-spacing: -0.02em;
+      color: var(--yellow);
+      margin-bottom: 0.5rem;
+    }
+
+    .footer-sub {
+      font-size: 0.8rem;
+      color: rgba(255,255,255,0.5);
+      font-family: var(--font-title);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+    }
+
+    /* ── POPUP VIDEO ── */
+    .video-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.9);
+      z-index: 999;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+    }
+
+    .video-overlay.open {
+      display: flex;
+    }
+
+    .video-wrapper {
+      position: relative;
+      width: 100%;
+      max-width: 860px;
+      background: var(--black);
+      border: 4px solid var(--yellow);
+    }
+
+    .video-close {
+      position: absolute;
+      top: -18px;
+      right: -18px;
+      width: 36px;
+      height: 36px;
+      background: var(--yellow);
+      border: none;
+      cursor: pointer;
+      font-family: var(--font-title);
+      font-weight: 900;
+      font-size: 1.1rem;
+      color: var(--black);
+      z-index: 10;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .video-wrapper video {
+      width: 100%;
+      display: block;
+    }
+
+    /* ── MOBILE NAV ── */
+    @media (max-width: 768px) {
+      .burger { display: flex; }
+
+      .nav-links {
+        display: none;
+        position: fixed;
+        top: 60px; left: 0; right: 0;
+        background: var(--black);
+        border-bottom: 3px solid var(--yellow);
+        flex-direction: column;
+        padding: 1rem;
+        gap: 0;
+      }
+
+      .nav-links.open { display: flex; }
+      .nav-links a { padding: 0.75rem 1rem; font-size: 0.85rem; }
+      .nav-links a:hover { background: var(--yellow); color: var(--black); }
+
+      #hero {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-left {
+        padding: 3rem 1.5rem 2rem;
+      }
+
+      .hero-right {
+        padding: 2rem 1.5rem 3rem;
+      }
+
+      .apropos-grid,
+      .contact-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+
+      .form-row {
+        grid-template-columns: 1fr;
+      }
+
+      .section-number { font-size: 2.5rem; }
+    }
+
+    @media (max-width: 480px) {
+      nav { padding: 0 1rem; }
+      section { padding: 3.5rem 1.2rem; }
+      .hero-left { padding: 2.5rem 1.2rem 1.5rem; }
+      .hero-right { padding: 1.5rem 1.2rem 2.5rem; }
+      .timeline { padding-left: 2rem; }
+    }
+  </style>
 </head>
+
 <body>
 
-    <div class="noise"></div>
+<!-- ══ NAV ══ -->
+<nav>
+  <div class="nav-logo">S.PRAT</div>
+  <button class="burger" id="burgerBtn" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#hero">Accueil</a></li>
+    <li><a href="#apropos">À propos</a></li>
+    <li><a href="#projets">Projets</a></li>
+    <li><a href="#experiences">Expériences</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
 
-    <header>
-        <h1 class="hero-title">MON<br>PORTFOLIO</h1>
-        <div class="hero-subtitle">
-            <span class="hero-name">Samuel PRAT</span>, Étudiant en Villes et Territoires Durables
-        </div>
-    </header>
+<!-- ══ HERO ══ -->
+<section id="hero">
+  <div class="hero-bg-shapes"></div>
 
-    <div class="marquee">
-        <span>VILLES DURABLES • TERRITOIRES • DESIGN • CRÉATIVITÉ • ANNÉE 1 • ROMAN PHOTO • BRANDING • URBANISME • </span>
-        <span>VILLES DURABLES • TERRITOIRES • DESIGN • CRÉATIVITÉ • ANNÉE 1 • ROMAN PHOTO • BRANDING • URBANISME • </span>
+  <div class="hero-left">
+    <div class="hero-tag">Portfolio 2024–2025</div>
+    <h1 class="hero-name">
+      Samuel<span>PRAT</span>
+    </h1>
+    <p class="hero-subtitle">Villes & Territoires Durables</p>
+    <p class="hero-desc">
+      Étudiant en BUT Carrières Sociales à l'IUT de Bordeaux Montaigne, passionné par l'aménagement du territoire, l'environnement et les enjeux urbains de demain.
+    </p>
+    <div class="hero-cta">
+      <a href="#projets" class="btn btn-primary">Voir mes projets</a>
+      <a href="#contact" class="btn btn-outline">Me contacter</a>
+    </div>
+  </div>
+
+  <div class="hero-right">
+    <div class="hero-card">
+      <div class="hero-card-label">Parcours en bref</div>
+      <div class="hero-card-stat">
+        <div class="hero-card-stat-num">BUT</div>
+        <div class="hero-card-stat-label">Carrières Sociales — VTD</div>
+      </div>
+      <div class="hero-card-divider"></div>
+      <div class="hero-card-stat">
+        <div class="hero-card-stat-num">4</div>
+        <div class="hero-card-stat-label">Projets réalisés</div>
+      </div>
+      <div class="hero-card-divider"></div>
+      <div class="hero-card-stat">
+        <div class="hero-card-stat-num">IUT</div>
+        <div class="hero-card-stat-label">Bordeaux Montaigne</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ À PROPOS ══ -->
+<section id="apropos">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-number">01</div>
+      <h2 class="section-title">À Propos<span></span></h2>
     </div>
 
-    <section class="container" id="projects-section">
-        <div class="section-header">
-            <h2 class="section-title">TRAVAUX</h2>
-            <p style="color: var(--yellow)">SÉLECTION ANNÉE 1</p>
+    <div class="apropos-grid">
+      <div class="apropos-sidebar">
+        <div class="apropos-identity-block">
+          <div class="apropos-identity-name">Samuel PRAT</div>
+          <div class="apropos-identity-role">Étudiant BUT 1ère année</div>
+          <div class="apropos-identity-role" style="margin-top:0.2rem; color: rgba(255,255,255,0.5);">IUT Bordeaux Montaigne</div>
         </div>
-
-        <div class="projects-grid" id="grid-anne1">
-            <!-- Les projets seront injectés ici -->
+        <div class="skills-block">
+          <span class="skill-tag">Cartographie</span>
+          <span class="skill-tag">Aménagement urbain</span>
+          <span class="skill-tag">Territoire</span>
+          <span class="skill-tag">Environnement</span>
+          <span class="skill-tag">Sport & Océan</span>
+          <span class="skill-tag">Humanitaire</span>
         </div>
-    </section>
+      </div>
 
-    <footer class="footer-section">
-        <h2 style="font-size: 3rem;">UNE IDÉE ?<br>UN PROJET ?</h2>
-        <a href="mailto:contact@votremail.com" class="contact-btn">CONTACTEZ-MOI</a>
-        <div style="margin-top: 60px; font-weight: bold; color: var(--black);">
-            © 2024 • Samuel PRAT • TOUS DROITS RÉSERVÉS
+      <div class="apropos-content">
+        <p>Je m'appelle Samuel PRAT et je suis actuellement étudiant en première année de BUT Carrières Sociales parcours Villes et Territoires Durables à l'IUT de Bordeaux Montaigne.</p>
+        <p>Après un baccalauréat général, je me suis orienté vers ce cursus pour approfondir mon intérêt pour l'environnement et l'aménagement du territoire. Les expériences que j'ai pu mener au cours de ma formation m'ont confirmé mon choix d'étudier dans ce domaine.</p>
+        <p>Ce qui m'a vraiment aidé à comprendre les enjeux de cette formation, c'est le stage que j'ai réalisé dans l'intercommunalité de Bordeaux Métropole, dans le service Aménagement Urbain du pôle Territoire Ouest.</p>
+        <p>Aujourd'hui, je ne sais pas encore quel métier je veux faire. Cependant, je sais que je veux travailler dans l'aménagement du territoire, car les métiers que j'ai pu découvrir m'ont particulièrement plu. Je porte également un intérêt à l'environnement naturel, à l'océan et au sport.</p>
+        <p>Ce portfolio présente mes projets, mes compétences et mon parcours académique. Je vous invite à parcourir mes réalisations et reste à votre disposition pour toute information supplémentaire. Merci de votre visite.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ PROJETS ══ -->
+<section id="projets">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-number">02</div>
+      <h2 class="section-title">Projets<span></span></h2>
+    </div>
+
+    <div class="projets-grid">
+
+      <!-- Roman Photo -->
+      <div class="projet-card">
+        <div class="projet-card-accent"></div>
+        <div class="projet-card-body">
+          <div class="projet-card-year">Première année · Production visuelle</div>
+          <h3 class="projet-card-title">Roman Photo</h3>
+          <p class="projet-card-desc">Réalisation d'un roman photo sur le thème du paysage alimentaire. Ce projet a permis d'explorer les liens entre espace, territoire et alimentation à travers un format narratif visuel.</p>
+          <div class="no-link-note">📄 Document disponible sur demande</div>
         </div>
-    </footer>
+      </div>
 
-    <script>
-        /**
-         * Données des projets intégrées pour éviter les erreurs de résolution de module
-         */
-        const projetsAnne1 = [
-            {
-                id: "01",
-                categorie: "DIRECTION ARTISTIQUE",
-                titre: "ROMAN PHOTO",
-                image: "https://images.unsplash.com/photo-1550684848-fac1c5b4e853?auto=format&fit=crop&q=80&w=800",
-                lien: "projets/roman-photo.pdf" 
-            },
-            {
-                id: "02",
-                categorie: "BRANDING",
-                titre: "YELLOW POP",
-                image: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&q=80&w=800",
-                lien: "#"
-            },
-            {
-                id: "03",
-                categorie: "UI-UX DESIGN",
-                titre: "ACID INTERFACE",
-                image: "https://images.unsplash.com/photo-1633167606207-d840b5070fc2?auto=format&fit=crop&q=80&w=800",
-                lien: "#"
-            },
-            {
-                id: "04",
-                categorie: "MOTION GRAPHICS",
-                titre: "VIBRANT CORE",
-                image: "https://images.unsplash.com/photo-1620641788421-7a1c342ea42e?auto=format&fit=crop&q=80&w=800",
-                lien: "#"
-            }
-        ];
+      <!-- Cartographie -->
+      <div class="projet-card">
+        <div class="projet-card-accent"></div>
+        <div class="projet-card-body">
+          <div class="projet-card-year">Première année · SIG & Représentation</div>
+          <h3 class="projet-card-title">Cartographie</h3>
+          <p class="projet-card-desc">Deux réalisations issues du cours de cartographie : l'une représente le territoire du stage à Bordeaux Métropole (service Aménagement Urbain, pôle Territoire Ouest), l'autre compile l'ensemble des travaux cartographiques réalisés en formation.</p>
+          <div class="no-link-note">🗺️ Documents cartographiques disponibles sur demande</div>
+        </div>
+      </div>
 
-        /**
-         * Fonction pour charger les projets dans la grille
-         */
-        function chargerProjets(containerId) {
-            const container = document.getElementById(containerId);
-            if (!container) return;
+      <!-- UFEP -->
+      <a class="projet-card" href="#" id="ufepCard">
+        <div class="projet-card-accent"></div>
+        <div class="projet-card-body">
+          <div class="projet-card-year">Première année · Commande externe</div>
+          <h3 class="projet-card-title">Collaboration avec l'UFEP</h3>
+          <p class="projet-card-desc">Dans le cadre d'une collaboration avec l'UFEP (ONG), réalisation d'une commande visant à sensibiliser un jeune public à la déforestation et à la résilience climatique. Travail alliant communication visuelle et enjeux environnementaux globaux.</p>
+          <div class="projet-card-link">Voir la vidéo du projet</div>
+        </div>
+      </a>
 
-            const htmlProjets = projetsAnne1.map((projet, index) => `
-                <div class="project-card alt-${index % 3}" onclick="window.open('${projet.lien}', '_blank')">
-                    <div class="project-img-wrapper">
-                        <img src="${projet.image}" alt="${projet.titre}">
-                    </div>
-                    <div class="project-info">
-                        <span class="project-tag">${projet.id} / ${projet.categorie}</span>
-                        <h3>${projet.titre}</h3>
-                    </div>
-                </div>
-            `).join('');
+      <!-- Voyage Liban -->
+      <div class="projet-card">
+        <div class="projet-card-accent"></div>
+        <div class="projet-card-body">
+          <div class="projet-card-year">Seconde · Engagement humanitaire</div>
+          <h3 class="projet-card-title">Voyage humanitaire au Liban</h3>
+          <p class="projet-card-desc">En avril 2023, participation à un voyage humanitaire au Liban avec l'association <em>Les Cuisines de Marie</em>. Sur place, aide à la préparation de repas pour des personnes en situation de précarité alimentaire. Une expérience humaine et citoyenne profondément enrichissante.</p>
+          <div class="no-link-note">📷 Reportage photo disponible sur demande</div>
+        </div>
+      </div>
 
-            container.innerHTML = htmlProjets;
-        }
+    </div>
+  </div>
+</section>
 
-        // Initialisation au chargement
-        window.addEventListener('DOMContentLoaded', () => {
-            chargerProjets('grid-anne1');
+<!-- ══ EXPÉRIENCES / CV ══ -->
+<section id="experiences">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-number">03</div>
+      <h2 class="section-title">Expériences & CV<span></span></h2>
+    </div>
 
-            // Effet de scroll
-            window.addEventListener('scroll', () => {
-                const scrollPercent = window.scrollY / (document.body.offsetHeight - window.innerHeight);
-                const body = document.body;
-                
-                if (scrollPercent > 0.8) {
-                    body.style.backgroundColor = 'var(--black)';
-                } else {
-                    body.style.backgroundColor = 'var(--purple-deep)';
-                }
-            });
+    <div class="timeline">
+
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-date">2024–2025 · En cours</div>
+        <div class="timeline-title">BUT Carrières Sociales — VTD</div>
+        <div class="timeline-org">IUT Bordeaux Montaigne</div>
+        <p class="timeline-desc">Formation en Villes et Territoires Durables au sein du département Carrières Sociales. Acquisition de compétences en aménagement, cartographie, développement durable et conduite de projets territoriaux.</p>
+        <div class="timeline-tags">
+          <span class="timeline-tag">Aménagement</span>
+          <span class="timeline-tag">Cartographie</span>
+          <span class="timeline-tag">Développement durable</span>
+          <span class="timeline-tag">Projet territorial</span>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-date">2024 · Stage</div>
+        <div class="timeline-title">Stage — Service Aménagement Urbain</div>
+        <div class="timeline-org">Bordeaux Métropole · Pôle Territoire Ouest</div>
+        <p class="timeline-desc">Stage au sein du service Aménagement Urbain de l'intercommunalité de Bordeaux Métropole, pôle Territoire Ouest. Découverte des métiers de l'aménagement territorial à l'échelle métropolitaine, participation aux activités du service.</p>
+        <div class="timeline-tags">
+          <span class="timeline-tag">Intercommunalité</span>
+          <span class="timeline-tag">Urbanisme</span>
+          <span class="timeline-tag">Métropole bordelaise</span>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-date">Avril 2023 · Engagement</div>
+        <div class="timeline-title">Voyage humanitaire au Liban</div>
+        <div class="timeline-org">Association Les Cuisines de Marie</div>
+        <p class="timeline-desc">Participation à une mission humanitaire au Liban durant l'année de seconde. Aide à la préparation de repas pour des personnes en situation de vulnérabilité. Engagement citoyen et découverte de la solidarité internationale.</p>
+        <div class="timeline-tags">
+          <span class="timeline-tag">Solidarité</span>
+          <span class="timeline-tag">Humanitaire</span>
+          <span class="timeline-tag">International</span>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-date">2021–2024</div>
+        <div class="timeline-title">Baccalauréat Général</div>
+        <div class="timeline-org">Lycée</div>
+        <p class="timeline-desc">Obtention du baccalauréat général avec orientation vers les sciences humaines et sociales, constituant le socle de la curiosité pour les enjeux de territoire et d'environnement.</p>
+        <div class="timeline-tags">
+          <span class="timeline-tag">Sciences humaines</span>
+          <span class="timeline-tag">Géographie</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══ CONTACT ══ -->
+<section id="contact">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-number">04</div>
+      <h2 class="section-title">Contact<span></span></h2>
+    </div>
+
+    <div class="contact-grid">
+      <div class="contact-info">
+        <div class="contact-info-item">
+          <div class="contact-info-icon">✉</div>
+          <div>
+            <div class="contact-info-label">Email</div>
+            <div class="contact-info-value">
+              <a href="mailto:pratsamuel@yahoo.com">pratsamuel@yahoo.com</a>
+            </div>
+          </div>
+        </div>
+        <div class="contact-info-item">
+          <div class="contact-info-icon">📞</div>
+          <div>
+            <div class="contact-info-label">Téléphone</div>
+            <div class="contact-info-value">
+              <a href="tel:+33699441437">06 99 44 14 37</a>
+            </div>
+          </div>
+        </div>
+        <div class="contact-info-item">
+          <div class="contact-info-icon">📍</div>
+          <div>
+            <div class="contact-info-label">Localisation</div>
+            <div class="contact-info-value">Bordeaux, France</div>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <form class="contact-form" id="contactForm" novalidate>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="fname">Prénom *</label>
+              <input type="text" id="fname" name="fname" placeholder="Votre prénom" required />
+            </div>
+            <div class="form-group">
+              <label for="lname">Nom *</label>
+              <input type="text" id="lname" name="lname" placeholder="Votre nom" required />
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="email">Email *</label>
+            <input type="email" id="email" name="email" placeholder="votre@email.com" required />
+          </div>
+          <div class="form-group">
+            <label for="objet">Objet</label>
+            <input type="text" id="objet" name="objet" placeholder="Sujet de votre message" />
+          </div>
+          <div class="form-group">
+            <label for="message">Message *</label>
+            <textarea id="message" name="message" rows="5" placeholder="Votre message..." required></textarea>
+          </div>
+          <div class="form-msg" id="formMsg"></div>
+          <button type="submit" class="btn btn-primary" style="width: fit-content;">Envoyer le message</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ FOOTER ══ -->
+<footer>
+  <div class="footer-name">Samuel PRAT</div>
+  <div class="footer-sub">Étudiant Villes & Territoires Durables — IUT Bordeaux Montaigne · 2025</div>
+</footer>
+
+<!-- ══ VIDEO OVERLAY ══ -->
+<div class="video-overlay" id="videoOverlay">
+  <div class="video-wrapper">
+    <button class="video-close" id="videoClose">✕</button>
+    <video id="videoPlayer" controls preload="none">
+      <source src="VIDEO_FINALE_TCHAD.mp4" type="video/mp4" />
+      Votre navigateur ne supporte pas la lecture vidéo.
+    </video>
+  </div>
+</div>
+
+<!-- ══ JS ══ -->
+<script>
+  /* ── BURGER ── */
+  const burger = document.getElementById('burgerBtn');
+  const navLinks = document.getElementById('navLinks');
+  burger.addEventListener('click', () => navLinks.classList.toggle('open'));
+  navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => navLinks.classList.remove('open')));
+
+  /* ── VIDEO ── */
+  const ufepCard = document.getElementById('ufepCard');
+  const videoOverlay = document.getElementById('videoOverlay');
+  const videoClose = document.getElementById('videoClose');
+  const videoPlayer = document.getElementById('videoPlayer');
+
+  ufepCard.addEventListener('click', (e) => {
+    e.preventDefault();
+    videoOverlay.classList.add('open');
+    videoPlayer.play();
+  });
+
+  function closeVideo() {
+    videoOverlay.classList.remove('open');
+    videoPlayer.pause();
+    videoPlayer.currentTime = 0;
+  }
+
+  videoClose.addEventListener('click', closeVideo);
+  videoOverlay.addEventListener('click', (e) => {
+    if (e.target === videoOverlay) closeVideo();
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') closeVideo();
+  });
+
+  /* ── FORM ── */
+  const contactForm = document.getElementById('contactForm');
+  const formMsg = document.getElementById('formMsg');
+
+  contactForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const fname = contactForm.fname.value.trim();
+    const lname = contactForm.lname.value.trim();
+    const email = contactForm.email.value.trim();
+    const message = contactForm.message.value.trim();
+    const emailRe = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    formMsg.className = 'form-msg';
+    formMsg.textContent = '';
+
+    if (!fname || !lname || !email || !message) {
+      formMsg.classList.add('error');
+      formMsg.textContent = '⚠ Merci de remplir tous les champs obligatoires (*).';
+      return;
+    }
+
+    if (!emailRe.test(email)) {
+      formMsg.classList.add('error');
+      formMsg.textContent = '⚠ Adresse email invalide.';
+      return;
+    }
+
+    formMsg.classList.add('success');
+    formMsg.textContent = `✓ Merci ${fname} ! Votre message a bien été envoyé.`;
+    contactForm.reset();
+  });
+
+  /* ── ACTIVE NAV ── */
+  const sections = document.querySelectorAll('section[id], #hero');
+  const navAnchors = document.querySelectorAll('.nav-links a');
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        navAnchors.forEach(a => {
+          a.style.background = '';
+          a.style.color = '';
         });
-    </script>
+        const id = entry.target.id;
+        const active = document.querySelector(`.nav-links a[href="#${id}"]`);
+        if (active) {
+          active.style.background = 'var(--yellow)';
+          active.style.color = 'var(--black)';
+        }
+      }
+    });
+  }, { threshold: 0.4 });
+
+  document.querySelectorAll('section[id]').forEach(s => observer.observe(s));
+</script>
+
 </body>
 </html>
